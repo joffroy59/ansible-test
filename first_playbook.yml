@@ -4,6 +4,9 @@
   connection: ansible.netcommon.network_cli
   gather_facts: false
   hosts: localhost
+
+  vars:
+    alias_dns: "http://rec.fr.fr"
   tasks:
 
     - name: "Display the config"
@@ -24,3 +27,11 @@
         insertafter: '(?m)443(.|\n)*ServerName.*'
         block: '    Mon bloc 343'
         backup: true
+
+    - name: "Test blockinfile Apache ServerAlias"
+      ansible.builtin.replace:
+        path: /home/joffroy/ansible/data/http2.conf
+        regexp: '(.*ServerName.*)(?>ServerAlias)'
+        after: '<VirtualHost .*:443>'
+        before: '</VirtualHost>'
+        replace: '\g<1>\n    ServerAlias "{{ alias_dns }}"'
