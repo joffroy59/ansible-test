@@ -6,8 +6,8 @@
   hosts: localhost
   tasks:
 
-    - name: Display the config
-      debug:
+    - name: "Display the config"
+      ansible.builtin.debug:
         msg: "The hostname is {{ inventory_hostname }}"
 
 
@@ -20,7 +20,7 @@
     - name: "Test blockinfile Apache ServerAlias"
       ansible.builtin.blockinfile:
         path: /home/joffroy/ansible/data/http.conf
-        marker: "# {mark} ANSIBLE MANAGED BLOCK (Apache)"
-        insertafter: 'ServerName'
-        block: |
-          
+        marker: "    # {mark} ANSIBLE MANAGED BLOCK (Apache)"
+        insertafter: '(?m)443(.|\n)*ServerName.*'
+        block: '    Mon bloc 343'
+        backup: true
