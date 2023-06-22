@@ -1,0 +1,37 @@
+# Apache doit écouter sur le port 80
+Listen 80
+<VirtualHost 12.23.45.56:80>
+    DocumentRoot "/www/example1"
+    ServerName www.example.com
+  
+    # Autres directives ici
+</VirtualHost>
+
+<VirtualHost 12.23.45.56:442>
+    DocumentRoot "/www/example2"
+    ServerName www.example.org
+
+    # Autres directives ici
+</VirtualHost>
+
+<VirtualHost 12.23.45.56:8080>
+    DocumentRoot "/www/example2"
+    ServerName www.example.org
+
+    # Autres directives ici
+</VirtualHost>
+
+<VirtualHost 12.23.45.56:443>
+    DocumentRoot "/www/example2"
+    ServerName www.example.org
+
+    # Autres directives ici
+</VirtualHost>
+
+
+<VirtualHost 12.23.45.56:444>
+    DocumentRoot "/www/example2"
+    ServerName www.example.org
+
+    # Autres directives ici
+</VirtualHost>

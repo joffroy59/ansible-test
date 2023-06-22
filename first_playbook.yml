@@ -54,3 +54,22 @@
             before: '</VirtualHost>'
             regexp: '(ServerName.*$)'
             replace: '\g<1>ServerAlias "{{ alias_dns }}"'
+
+    - name: "Update ServerAlias"
+      when: true
+      block:
+        - name: "Test replace Apache ServerAlias"
+          ansible.builtin.replace:
+            path: /home/joffroy/ansible/data/http4.conf
+            regexp: 'ServerAlias.*$'
+            after: '<VirtualHost .*:443>'
+            before: '</VirtualHost>'
+            replace: ''
+
+        - name: "Test replace Apache ServerAlias"
+          ansible.builtin.replace:
+            path: /home/joffroy/ansible/data/http4.conf
+            after: '<VirtualHost .*:443>'
+            before: '</VirtualHost>'
+            regexp: '(ServerName.*$)'
+            replace: '\g<1>ServerAlias "{{ alias_dns }}"'            
