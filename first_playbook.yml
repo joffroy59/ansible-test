@@ -42,7 +42,7 @@
         - name: "Test replace Apache ServerAlias"
           ansible.builtin.replace:
             path: /home/joffroy/ansible/data/http3.conf
-            regexp: 'ServerAlias.*'
+            regexp: 'ServerAlias.*$'
             after: '<VirtualHost .*:443>'
             before: '</VirtualHost>'
             replace: ''
@@ -52,5 +52,5 @@
             path: /home/joffroy/ansible/data/http3.conf
             after: '<VirtualHost .*:443>'
             before: '</VirtualHost>'
-            regexp: '(.*ServerName.*)'
+            regexp: '(ServerName.*$)'
             replace: '\g<1>ServerAlias "{{ alias_dns }}"'
